@@ -485,6 +485,8 @@
                   section_id: section.id,
                   show_pickup_availability: true
                 -%}
+                {% when 'wishlist' %}
+                  {%  render 'wishlist', card_product: product %}
               {%- when 'rating' -%}
                 {%- if product.metafields.reviews.rating.value != blank -%}
                   <div class="rating-wrapper">
@@ -2084,6 +2086,18 @@
           "default": "t:sections.main-product.blocks.icon_with_text.settings.heading_3.default",
           "label": "t:sections.main-product.blocks.icon_with_text.settings.heading_3.label",
           "info": "t:sections.main-product.blocks.icon_with_text.settings.heading.info"
+        }
+      ]
+    },
+    {
+      "type": "wishlist",
+      "name":"Enable Wishlist",
+      "settings":[
+        {
+          "type": "checkbox",
+          "id": "enable_wishlist",
+          "label": "t:sections.main-product.settings.enable_wishlist.label",
+          "default": false
         }
       ]
     }

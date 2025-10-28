@@ -389,6 +389,7 @@
               </product-form>
             {%- endif -%}
           </div>
+          {% render 'wishlist', card_product: card_product %}
         {% elsif quick_add == 'bulk' %}
           {% if card_product.variants_count == 1 %}
             <quick-add-bulk
@@ -566,28 +567,7 @@
             </span>
           {%- endif -%}
         </div>
-  <wishlist-button class="wishlist-btn">
-    {%  assign is_wishlist_products = false %}
-     {%- if customer and customer.metafields.custom.wishlist_products != blank -%}
-      {% assign wishlist_raw = customer.metafields.custom.wishlist_products.value %}
-
-    {%  for wishlist_product in wishlist_raw %}
-        {% if wishlist_product.id contains card_product.id %}
-          {%  assign is_wishlist_products = true %}
-     
-        {%  endif %}
-    {%  endfor %}
-  {%  endif %}
-    
-  <button 
-    id="add-wishlist"
-    data-product-id="{{ card_product.id }}"
-    data-customer-id="{{ customer.id | default: '' }}"
-  >
-  {%  if is_wishlist_products %} Remove from wishlist {% else %} Add to Wishlist {% endif %}
-  </button>
-  <script src="{{ 'wishlist.js' | asset_url }}" defer ></script>
-  </wishlist-button>
+        
       </div>
     </div>
   </div>
@@ -646,20 +626,3 @@
   </div>
 {%- endif -%}
 
-<style>
-  .wishlist-btn{
-        position: relative;
-    z-index: 12;
-    cursor: pointer;
-    width: 100%;
-  
-  }
-  button#add-wishlist {
-    width: 100%;
-    background: #141414;
-    color: #fff;
-    height: 40px;
-    border-radius: 4px;
-    border: 1px solid #fff;
-}
-</style>

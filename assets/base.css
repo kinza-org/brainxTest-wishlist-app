@@ -1205,7 +1205,7 @@ button.shopify-payment-button__button--unbranded {
 .customer button,
 button.shopify-payment-button__button--unbranded {
   min-width: calc(12rem + var(--buttons-border-width) * 2);
-  min-height: calc(4.5rem + var(--buttons-border-width) * 2);
+  min-height: calc(3rem + var(--buttons-border-width) * 2);
 }
 
 .button,
@@ -3595,3 +3595,32 @@ details-disclosure > details {
     transform: translateX(100%) scaleX(0);
   }
 }
+/* Start Wishlist Button Css */
+  .wishlist-wrsapper{
+    position: relative;
+    z-index: 12;
+    cursor: pointer;
+    width: 100%; 
+  }
+  button.add-wishlist, button.remove-wishlist {
+    width: 100%;
+    position: relative;
+    background: #141414;
+    color: #fff;
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid #fff;
+}
+#wishlist-btn .loading__spinner {
+  top: 10px;
+}
+#wishlist-btn .loading__spinner svg circle{
+  stroke: #fff;
+}
+.wishlist-page-link svg{
+  vertical-align: middle;
+}
+.wishlist-wrapper{
+  grid-row-start: 5;
+}
+/* End Wishlist Button Css */
