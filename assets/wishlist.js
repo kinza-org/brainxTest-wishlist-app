@@ -2,7 +2,7 @@ if (!customElements.get("wishlist-button")) {
   class WishlistButton extends HTMLElement {
     constructor() {
       super();
-      this.apiBaseUrl = "https://brainxtest-wishlist-app-backend.vercel.app";
+      this.apiBaseUrl = "https://brainx-test-wishlist-app-backend.vercel.app/";
       this.button = this.querySelector("button");
       this.spinner = this.querySelector(".loading__spinner");
       this.productId = this.button?.dataset.productId;
