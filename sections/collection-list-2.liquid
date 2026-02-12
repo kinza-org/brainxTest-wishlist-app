@@ -1,236 +1,73 @@
-<section class="top-selling-section">
-  <div class="container">
+<section class="top-products">
+  <div class="tp-container">
 
-    <!-- Header -->
-    <div class="section-header">
-      <div class="left">
-        <button class="tag-btn">See More Categories</button>
-        <h2>Top-Selling Product<br>of the year Collection</h2>
+    <!-- HEADER -->
+    <div class="tp-header">
+      <div class="tp-left">
+        <button class="tp-tag">See More Categories</button>
+        <h2>
+          Top-Selling Product<br>
+          of the year Collection
+        </h2>
       </div>
 
-      <div class="right">
+      <div class="tp-right">
         <p>
-          We do not divide our collections to seasons.
-          We create new models every week in a few items.
+          We do not divide our collections to seasons we create new models every week and we in a few items
         </p>
-        <button class="shop-btn">Shop Now</button>
+        <button class="tp-shop">Shop Now</button>
       </div>
     </div>
 
-    <!-- Carousel -->
-    <div class="carousel-wrapper">
-      <button class="nav prev">&#8592;</button>
+    <!-- CAROUSEL -->
+    <div class="tp-carousel-wrapper">
 
-      <div class="carousel" id="productCarousel">
-        <div class="card">
-          <img src="https://via.placeholder.com/220x260" alt="">
-          <div class="card-info">
+      <div class="tp-carousel" id="tpCarousel">
+
+        <div class="tp-card small">
+          <img src="https://via.placeholder.com/180x220" alt="">
+          <div class="tp-info">
             <span>Summer Cloth</span>
             <span>23</span>
           </div>
         </div>
 
-        <div class="card tall">
-          <img src="https://via.placeholder.com/220x350" alt="">
-          <div class="card-info">
+        <div class="tp-card tall">
+          <img src="https://via.placeholder.com/200x320" alt="">
+          <div class="tp-info">
             <span>Water Bottle</span>
             <span>19</span>
           </div>
         </div>
 
-        <div class="card">
-          <img src="https://via.placeholder.com/220x280" alt="">
-          <div class="card-info">
+        <div class="tp-card medium">
+          <img src="https://via.placeholder.com/200x250" alt="">
+          <div class="tp-info">
             <span>Summer Caps</span>
             <span>20</span>
           </div>
         </div>
 
-        <div class="card short">
-          <img src="https://via.placeholder.com/220x220" alt="">
-          <div class="card-info">
+        <div class="tp-card small">
+          <img src="https://via.placeholder.com/180x240" alt="">
+          <div class="tp-info">
             <span>Summer Jeans</span>
             <span>33</span>
           </div>
         </div>
+
       </div>
 
-      <button class="nav next">&#8594;</button>
-    </div>
+      <!-- Arrows -->
+      <div class="tp-arrows">
+        <button class="tp-nav prev">&#8592;</button>
+        <button class="tp-nav next">&#8594;</button>
+      </div>
 
+    </div>
   </div>
 </section>
 
-<style>
-.top-selling-section {
-  padding: 80px 5%;
-  background: #f4f4f4;
-  font-family: Arial, sans-serif;
-}
-
-.container {
-  max-width: 1300px;
-  margin: auto;
-}
-
-/* Header */
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 50px;
-  flex-wrap: wrap;
-  gap: 30px;
-}
-
-.section-header h2 {
-  font-size: 36px;
-  line-height: 1.2;
-  margin-top: 15px;
-}
-
-.section-header .right {
-  max-width: 350px;
-}
-
-.tag-btn,
-.shop-btn {
-  padding: 8px 18px;
-  border-radius: 25px;
-  border: 1px solid #ccc;
-  background: white;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.shop-btn {
-  margin-top: 15px;
-}
-
-.tag-btn:hover,
-.shop-btn:hover {
-  background: #111;
-  color: white;
-}
-
-/* Carousel */
-.carousel-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.carousel {
-  display: flex;
-  gap: 25px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
-  padding: 10px 0;
-}
-
-.carousel::-webkit-scrollbar {
-  display: none;
-}
-
-.card {
-  flex: 0 0 260px;
-  background: white;
-  border-radius: 20px;
-  padding: 20px;
-  scroll-snap-align: start;
-  transition: 0.3s ease;
-}
-
-.card img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.card-info {
-  margin-top: 15px;
-  display: flex;
-  justify-content: space-between;
-  font-size: 15px;
-}
-
-/* Different heights */
-.card.tall {
-  padding-bottom: 50px;
-}
-
-.card.short {
-  padding-bottom: 5px;
-}
-
-.card:hover {
-  transform: translateY(-6px);
-}
-
-/* Navigation */
-.nav {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  border: 1px solid #ddd;
-  background: white;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.nav:hover {
-  background: #111;
-  color: white;
-}
-
-.prev {
-  margin-right: 15px;
-}
-
-.next {
-  margin-left: 15px;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .section-header {
-    flex-direction: column;
-  }
-
-  .carousel-wrapper {
-    margin-top: 20px;
-  }
-
-  .nav {
-    display: none;
-  }
-}
-</style>
-
-<script>
-(function () {
-  const carousel = document.getElementById('productCarousel');
-  const nextBtn = document.querySelector('.next');
-  const prevBtn = document.querySelector('.prev');
-
-  const scrollAmount = 285;
-
-  nextBtn.addEventListener('click', () => {
-    carousel.scrollBy({
-      left: scrollAmount,
-      behavior: 'smooth'
-    });
-  });
-
-  prevBtn.addEventListener('click', () => {
-    carousel.scrollBy({
-      left: -scrollAmount,
-      behavior: 'smooth'
-    });
-  });
-})();
-</script>
 {% schema %}
 {
 "name":"colllection list 2",
