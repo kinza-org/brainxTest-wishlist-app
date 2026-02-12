@@ -216,6 +216,24 @@
 }
 
     </style>
+    <script>
+        (function () {
+  const carousel = document.getElementById("tpCarousel");
+  const next = document.querySelector(".tp-nav.next");
+  const prev = document.querySelector(".tp-nav.prev");
+
+  const scrollAmount = 290;
+
+  next.addEventListener("click", () => {
+    carousel.scrollBy({ left: scrollAmount, behavior: "smooth" });
+  });
+
+  prev.addEventListener("click", () => {
+    carousel.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+  });
+})();
+
+        </script>
 
 {% schema %}
 {
