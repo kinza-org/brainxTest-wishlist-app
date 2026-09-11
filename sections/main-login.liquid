@@ -145,7 +145,7 @@
         </a>
       {%- endif -%}
 
-      <button>
+      <button class="signin-btn" type="submit">
         {{ 'customer.login_page.sign_in' | t }}
       </button>
 
@@ -168,6 +168,31 @@
     </div>
   {%- endif -%}
 </div>
+<script>
+
+  // On the login page, after successful login, redirect back
+  document.addEventListener("DOMContentLoaded", function() {
+    const form = document.querySelector('form[action="/account/login"]');
+
+    if (form) {
+      form.addEventListener('submit', function() {
+        const redirectUrl = sessionStorage.getItem('redirectAfterLogin');
+
+        // Add redirect param if available
+        if (redirectUrl) {
+          const hiddenRedirect = document.createElement('input');
+          hiddenRedirect.type = 'hidden';
+          hiddenRedirect.name = 'return_to';
+          hiddenRedirect.value = redirectUrl;
+          form.appendChild(hiddenRedirect);
+          sessionStorage.removeItem('redirectAfterLogin');
+        }
+      });
+    }
+  });
+</script>
+
+
 
 {% schema %}
 {
@@ -206,3 +231,4 @@
   ]
 }
 {% endschema %}
+

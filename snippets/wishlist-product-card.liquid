@@ -1,0 +1,67 @@
+{%- comment -%}
+  wishlist product card
+  Accepts: product {Object} - Product object
+{%- endcomment -%}
+
+{%- if product and product != empty -%}
+  {%- liquid
+    assign ratio = 1
+    if product.featured_media
+      assign ratio = product.featured_media.aspect_ratio
+    endif
+    if ratio == 0 or ratio == null
+      assign ratio = 1
+    endif
+  -%}
+  
+  <div class="wishlist-card">
+    <div class="wishlist-card__media" style="--ratio: {{ 1 | divided_by: ratio | times: 100 }}%">
+      {%- if product.featured_media -%}
+        <img
+          src="{{ product.featured_media | image_url: width: 400 }}"
+          srcset="{{ product.featured_media | image_url: width: 200 }} 200w, {{ product.featured_media | image_url: width: 400 }} 400w"
+          sizes="(min-width: 990px) 25vw, (min-width: 750px) 33vw, 50vw"
+          alt="{{ product.featured_media.alt | escape }}"
+          loading="lazy"
+          width="{{ product.featured_media.width }}"
+          height="{{ product.featured_media.height }}"
+        >
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+      
+      {%- unless product.available -%}
+        <span class="wishlist-card__badge">{{ 'products.product.sold_out' | t }}</span>
+      {%- else -%}
+        {%- if product.compare_at_price > product.price -%}
+          <span class="wishlist-card__badge wishlist-card__badge--sale">{{ 'products.product.on_sale' | t }}</span>
+        {%- endif -%}
+      {%- endunless -%}
+    </div>
+    
+    <div class="wishlist-card__content">
+      <h3 class="wishlist-card__title">
+        <a href="{{ product.url }}">{{ product.title | escape }}</a>
+      </h3>
+      
+      <div class="wishlist-card__price">
+        {%- if product.compare_at_price > product.price and product.available -%}
+          <span class="price-compare">{{ product.compare_at_price | money }}</span>
+        {%- endif -%}
+        <span class="price{% if product.compare_at_price > product.price and product.available %} price--sale{% endif %}">
+          {{ product.price | money }}
+        </span>
+      </div>
+      
+      <form class="wishlist-card__form cart-form" data-product-id="{{ product.id }}">
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <button type="submit" class="button button--full-width button--primary btn-cart" {% unless product.available %}disabled{% endunless %}>
+          <span>{% if product.available %}Add to cart{% else %}Sold out{% endif %}</span>
+          <div class="loading-spinner" style="display:none">
+            <svg width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" stroke-dasharray="31.416" stroke-dashoffset="31.416"><animate attributeName="stroke-dasharray" dur="2s" values="0 31.416;15.708 15.708;0 31.416" repeatCount="indefinite"/><animate attributeName="stroke-dashoffset" dur="2s" values="0;-15.708;-31.416" repeatCount="indefinite"/></svg>
+          </div>
+        </button>
+      </form>
+    </div>
+  </div>
+{%- endif -%}

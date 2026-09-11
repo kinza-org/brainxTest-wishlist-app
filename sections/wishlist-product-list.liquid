@@ -1,0 +1,60 @@
+{{  'wishlist.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign wishlist_handles = customer.metafields.custom.wishlist_products.value | map: 'handle' | default: blank
+-%}
+<div class="wishlist-page page-width">
+  <header class="wishlist-header">
+    <h1 class="h1">My Wishlist</h1>
+    {%- if wishlist_handles.size > 0 -%}
+      <p class="caption">{{ wishlist_handles.size }} Items</p>
+    {%- endif -%}
+  </header>
+
+  {%- unless customer -%}
+    <div class="empty-state">
+      <p>Please log in to view your wishlist.</p>
+      <a href="{{ routes.account_login_url }}" class="button wishlist-login">Login</a>
+    </div>
+  {%- else -%}
+    {%- unless wishlist_handles.size > 0 -%}
+      <div class="empty-state">
+        <p>Your wishlist is empty.</p>
+        <a href="{{ routes.all_products_collection_url }}" class="button">Continue shopping</a>
+      </div>
+    {%- else -%}
+      <div class="wishlist-grid">
+        {%- for product_handle in wishlist_handles -%}
+
+          {%- assign product = all_products[product_handle] -%}
+          {%- if product -%}
+            {%- render 'wishlist-product-card', product: product -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endunless -%}
+  {%- endunless -%}
+</div>
+
+<script src="{{ 'wishlist-quid-add.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Wishlist Products",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        { "value": "adapt", "label": "Adapt" },
+        { "value": "portrait", "label": "Portrait" },
+        { "value": "square", "label": "Square" }
+      ],
+      "default": "adapt",
+      "label": "Image ratio"
+    }
+  ],
+  "presets": [{ "name": "Wishlist Products" }]
+}
+{% endschema %}

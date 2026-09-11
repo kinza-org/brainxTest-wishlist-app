@@ -1,0 +1,244 @@
+<section class="top-products">
+  <div class="tp-container">
+
+    <!-- HEADER -->
+    <div class="tp-header">
+      <div class="tp-left">
+        <button class="tp-tag">See More Categories</button>
+        <h2>
+          Top-Selling Product<br>
+          of the year Collection
+        </h2>
+      </div>
+
+      <div class="tp-right">
+        <p>
+          We do not divide our collections to seasons we create new models every week and we in a few items
+        </p>
+        <button class="tp-shop">Shop Now</button>
+      </div>
+    </div>
+
+    <!-- CAROUSEL -->
+    <div class="tp-carousel-wrapper">
+
+      <div class="tp-carousel" id="tpCarousel">
+
+        <div class="tp-card small">
+          <img src="https://via.placeholder.com/180x220" alt="">
+          <div class="tp-info">
+            <span>Summer Cloth</span>
+            <span>23</span>
+          </div>
+        </div>
+
+        <div class="tp-card tall">
+          <img src="https://via.placeholder.com/200x320" alt="">
+          <div class="tp-info">
+            <span>Water Bottle</span>
+            <span>19</span>
+          </div>
+        </div>
+
+        <div class="tp-card medium">
+          <img src="https://via.placeholder.com/200x250" alt="">
+          <div class="tp-info">
+            <span>Summer Caps</span>
+            <span>20</span>
+          </div>
+        </div>
+
+        <div class="tp-card small">
+          <img src="https://via.placeholder.com/180x240" alt="">
+          <div class="tp-info">
+            <span>Summer Jeans</span>
+            <span>33</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Arrows -->
+      <div class="tp-arrows">
+        <button class="tp-nav prev">&#8592;</button>
+        <button class="tp-nav next">&#8594;</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+<style>
+    .top-products {
+  background: #f3f3f3;
+  padding: 90px 6%;
+  font-family: "Inter", sans-serif;
+}
+
+.tp-container {
+  max-width: 1300px;
+  margin: auto;
+}
+
+/* HEADER */
+.tp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 70px;
+  gap: 40px;
+}
+
+.tp-left h2 {
+  font-size: 42px;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-top: 20px;
+  color: #111;
+}
+
+.tp-right {
+  max-width: 360px;
+}
+
+.tp-right p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 18px;
+}
+
+.tp-tag,
+.tp-shop {
+  border: 1px solid #dcdcdc;
+  background: transparent;
+  padding: 8px 18px;
+  border-radius: 25px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.tp-shop:hover,
+.tp-tag:hover {
+  background: #111;
+  color: #fff;
+}
+
+/* CAROUSEL */
+.tp-carousel-wrapper {
+  position: relative;
+}
+
+.tp-carousel {
+  display: flex;
+  gap: 30px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 10px;
+}
+
+.tp-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.tp-card {
+  background: #eaeaea;
+  border-radius: 22px;
+  padding: 30px 20px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.tp-card img {
+  max-width: 100%;
+  object-fit: contain;
+  margin: auto;
+}
+
+.tp-info {
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #111;
+}
+
+/* Different Heights */
+.tp-card.tall {
+  height: 420px;
+}
+
+.tp-card.medium {
+  height: 360px;
+}
+
+.tp-card.small {
+  height: 320px;
+}
+
+/* ARROWS */
+.tp-arrows {
+  position: absolute;
+  right: 0;
+  top: -60px;
+  display: flex;
+  gap: 10px;
+}
+
+.tp-nav {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.tp-nav:hover {
+  background: #111;
+  color: #fff;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .tp-header {
+    flex-direction: column;
+  }
+
+  .tp-arrows {
+    display: none;
+  }
+}
+
+    </style>
+    <script>
+        (function () {
+  const carousel = document.getElementById("tpCarousel");
+  const next = document.querySelector(".tp-nav.next");
+  const prev = document.querySelector(".tp-nav.prev");
+
+  const scrollAmount = 290;
+
+  next.addEventListener("click", () => {
+    carousel.scrollBy({ left: scrollAmount, behavior: "smooth" });
+  });
+
+  prev.addEventListener("click", () => {
+    carousel.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+  });
+})();
+
+        </script>
+
+{% schema %}
+{
+"name":"colllection list 2",
+"presets": [{
+"name": "colllection list 2"
+}]
+}
+{% endschema %}

@@ -1,0 +1,22 @@
+<wishlist-button class="wishlist-wrapper">
+    {% assign is_wishlist_products = false %}
+     {%- if customer and customer.metafields.custom.wishlist_products != blank -%}
+      {% assign wishlist_raw = customer.metafields.custom.wishlist_products.value %}
+    {%  for wishlist_product in wishlist_raw %}
+        {% if wishlist_product.id contains card_product.id %}
+          {%  assign is_wishlist_products = true %}
+        {%  endif %}
+    {%  endfor %}
+  {%  endif %}
+
+  <button 
+    id="wishlist-btn"
+    data-product-id="{{ card_product.id }}"
+    class="button button--full-width button--primary {% if is_wishlist_products %}remove-wishlist {% else %} add-wishlist{% endif %}"
+    data-customer-id="{{ customer.id | default: '' }}"
+  >
+ <span>   {%  if is_wishlist_products %} Remove from wishlist {% else %} Add to Wishlist {% endif %} </span>
+    {%- render 'loading-spinner' -%}
+  </button>
+  <script src="{{ 'wishlist.js' | asset_url }}" defer ></script>
+</wishlist-button>
